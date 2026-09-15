@@ -13,38 +13,46 @@
 <body>
     {{-- @dump($categories) --}}
 
-    <h1 class="text-danger text-center"> All Categories</h1>
-    <a href="{{ route('categories.create') }}" class="text-decoration-none"> <button class="btn btn-success mb-5">Create
-            New Category</button></a>
+    <h1 class="text-danger text-center"> All Products</h1>
+    <a href="{{ route('products.create') }}" class="text-decoration-none"> <button class="btn btn-success mb-5">Create
+            New Product</button></a>
 
     <table class="table table-stribe table-bordered w-75 m-auto mt-10">
         <thead>
             <th>Id</th>
             <th>name</th>
             <th>Description</th>
+            <th>Category Name</th>
             <th>action</th>
         </thead>
         <tbody>
 
-            @foreach ($categories as $category)
+            @foreach ($products as $product)
             <tr>
                 <td>
-                    {{ $category['id'] }}
+                    {{ $product['id'] }}
                 </td>
                 <td>
-                    {{ $category['name'] }}
+                    {{ $product['name'] }}
                 </td>
                 <td>
-                    {{ $category['description'] }}
+                    {{ $product['description'] }}
                 </td>
-                <td class="text-center">
-                    <a href="{{ route('categories.show',  $category->id) }}" class="text-decoration-none"> <button class="btn btn-warning">View</button></a>
-                    <a href="{{ route('categories.edit',$category->id) }}" class="btn btn-info">Edit</a>
-                    <form action="{{ route('categories.destroy',$category->id) }}" method="post">
-                        @method('delete')
+                <td>
+                    {{ $product->category->name }}
+                </td>
+                <td class="text-center d-flex justify-content-around">
+                    <a href="{{ route('products.show',$product->id) }}" class="text-decoration-none"> <button
+                            class="btn btn-warning">View</button></a>
+                    <a href="{{ route('products.edit',$product->id) }}" class="text-decoration-none"> <button
+                            class="btn btn-info">Edit</button></a>
+                    {{-- <form action="{{ route('products.destory',$product->id) }}" method="post">
+                        @method('DELETE')
                         @csrf
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+                        <button class="btn btn-danger" type="submit">Delete</button>
+
+                    </form> --}}
+
                 </td>
             </tr>
 

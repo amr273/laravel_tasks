@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text("description");
             $table->decimal("price",6,2);
             $table->integer("quantity")->default(0);
-            $table->foreignId("category")->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId("category_id")->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
