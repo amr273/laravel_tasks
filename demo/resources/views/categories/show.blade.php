@@ -11,6 +11,7 @@
 </head>
 
 <body>
+  <x-app-layout></x-app-layout>
     {{-- @dd($category) --}}
     {{-- dump and die ==> dump + exit --}}
 

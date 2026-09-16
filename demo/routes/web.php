@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Expr\FuncCall;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\authController;
+use App\Http\Controllers\UserController;
+
 
 Route::get('/', function () {
 	return view('welcome');
@@ -99,3 +102,34 @@ Route::get('/', function () {
 // route::get('/categories/{category}',[Categorycontroller::class,'show'])->name('categories.show');
 Route::resource('categories', CategoryController::class);
 Route::resource('products', ProductController::class);
+
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
+// Route::get('/dashboard', [authController::class, 'dashboard'])->name('dashboard');
+
+// name('users.index');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', [authController::class, 'dashboard'])->name('dashboard');
+});
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+// });
+
+// Route::middleware('auth')->group(function () {
+
+//     Route::resource('categories', CategoryController::class);
+
+//     Route::resource('products', ProductController::class);
+
+// });

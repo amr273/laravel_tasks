@@ -11,13 +11,22 @@
 </head>
 
 <body>
+
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Categories
+        </h2>
+    </x-slot>
+
+    <!-- content -->
     {{-- @dump($categories) --}}
-
-    <h1 class="text-danger text-center"> All Categories</h1>
+    
+    <!-- <h1 class="text-danger text-center"> All Categories</h1> -->
     <a href="{{ route('categories.create') }}" class="text-decoration-none"> <button class="btn btn-success mb-5">Create
-            New Category</button></a>
-
-    <table class="table table-stribe table-bordered w-75 m-auto mt-10">
+        New Category</button></a>
+        
+        <table class="table table-stribe table-bordered w-75 m-auto mt-10">
         <thead>
             <th>Id</th>
             <th>name</th>
@@ -52,6 +61,7 @@
         </tbody>
 
     </table>
+</x-app-layout>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>

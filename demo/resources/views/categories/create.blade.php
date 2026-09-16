@@ -11,7 +11,7 @@
 </head>
 
 <body>
-
+<x-app-layout></x-app-layout>
     <h1 class="text-danger text-center"> Create New Category</h1>
 
     <!-- @if ($errors->any())

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
+// use App\HTTP\Request\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -13,8 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products=Product::with('category')->get();
-    return view('products.index',compact('products'));
+        $products = Product::with('category')->get();
+        return view('products.index', compact('products'));
         //
     }
 
@@ -30,14 +31,12 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         //
-        $requestData=$request->validated();
-                Product::create($requestData);
+        $requestData = $request->validated();
+        Product::create($requestData);
         return to_route('products.index');
-
-
     }
 
     /**
@@ -49,7 +48,7 @@ class ProductController extends Controller
         // Product=Product $product ; // find or fail
         // $product == $Product=Product::findOrFail()
         // dump($product);
-        return view('products.show',compact('product'));
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -58,17 +57,16 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
-        return view('products.edit',compact('product'));
-
+        return view('products.edit', compact('product'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
         //
-        $requestData=$request->validated();
+        $requestData = $request->validated();
         $product->update($requestData);
         return view('products.show', compact('product'));
     }

@@ -13,6 +13,8 @@
 
 <body>
 
+    <x-app-layout></x-app-layout>
+
     <h1 class="text-danger text-center">Edit Category {{ $category->name }}</h1>
     <form action="{{ route('categories.update',$category->id) }}" method="POST" class="border border-3 w-75 m-auto mt-5 p-5">
         @csrf

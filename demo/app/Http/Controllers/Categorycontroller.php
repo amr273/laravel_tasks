@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\HTTP\Requests\CategoryRequest;
 
 class Categorycontroller extends Controller
 {
@@ -27,7 +28,7 @@ class Categorycontroller extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         // $requestData=$request->validate (
         // [
@@ -41,10 +42,7 @@ class Categorycontroller extends Controller
         //    'description.min'=>'category description must be at least 12 characters',
         // ]
         // );
-        $requestData = $request->validate([
-            'name' => 'required|min:3|max:20|string|unique:categories,name',
-            'description' => 'required|min:12|max:50|string',
-        ]);
+        $requestData = $request->validated();
         // $categoryData = $request->except("_token");
         Category::create($requestData);
         return to_route('categories.index');
@@ -69,13 +67,10 @@ class Categorycontroller extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         // $requestData = $request->validated();
-        $requestData = $request->validate([
-            'name' => 'required|min:3|max:20|string|unique:categories,name',
-            'description' => 'required|min:12|max:50|string',
-        ]);
+        $requestData = $request->validated();
         $category->update($requestData);
         return view('categories.show', compact('category'));
     }
